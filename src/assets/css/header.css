@@ -299,7 +299,7 @@
 }
 
 .nav-cart-wrapper {
-  visibility: hidden;
+  /* visibility: hidden; */
   position: absolute;
   padding-top: 18px;
   right: 0;
@@ -308,7 +308,7 @@
 }
 
 .nav-cart:hover .nav-cart-wrapper{
-  visibility: visible;
+   visibility: visible; 
 }
 
 .nav-cart-wrapper:before {

@@ -6,7 +6,8 @@ Vue.use(Vuex)
 let store = new Vuex.Store({
     state: {
         carPanelData: [],
-        isMaxNum:false
+        isMaxNum:false,
+        carShow:false
     },
     getters: {
         //计算
@@ -41,6 +42,7 @@ let store = new Vuex.Store({
                 }
             })
             if (boff) {
+                state.carShow = true
                 let goodsData = data
                 Vue.set(goodsData, 'count', 1)
                 state.carPanelData.push(goodsData)
@@ -57,6 +59,19 @@ let store = new Vuex.Store({
                      state.carPanelData.splice(index, 1)
               }
           })  
+        },
+        EnterCartPanel(state){
+            state.carShow = true;
+        },
+        LeaveCartPanel(state){
+            if(state.carPanelData.length > 0){
+                state.carShow = true;
+            }else{
+                setTimeout(function(){
+                    state.carShow = false;
+                },500)
+            }
+            
         }
     }
 })

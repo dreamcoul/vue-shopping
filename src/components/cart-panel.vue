@@ -1,13 +1,13 @@
 <template>
-        <li class="nav-cart" id="cartPanel">
-            <a href="javascript:;">购物车</a>
+        <li class="nav-cart" id="cartPanel" >
+            <a href="javascript:;" @mouseenter="EnterCartPanel" @mouseleave="LeaveCartPanel">购物车</a>
             <!--根据class改变颜色-->
-            <span class="cart-empty-num cart-num">
-                <i>0</i>
+            <span class="cart-empty-num" :class="{'cart-num':CountData>0}">
+                <i>{{CountData}}</i>
             </span>
-            <div class="nav-cart-wrapper">
+            <div class="nav-cart-wrapper" v-if="PanelShow">
                 <div class="nav-cart-list">
-                    <div class="empty">
+                    <div class="empty" v-if="CountData === 0">
                         <h3>购物车为空</h3>
                         <p>您还没有选购任何商品，现在前往商城选购吧!</p>
                     </div>
@@ -65,11 +65,20 @@ export default{
         },
         PriceData(){
             return this.$store.getters.totalPriceData
+        },
+        PanelShow(){
+            return this.$store.state.carShow
         }
     },
     methods:{
         clear(data){
             this.$store.commit('clearCarData',data)
+        },
+        EnterCartPanel(){
+            this.$store.commit('EnterCartPanel')
+        },
+        LeaveCartPanel(){
+           this.$store.commit('LeaveCartPanel')
         }
     }
 }
