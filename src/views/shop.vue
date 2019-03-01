@@ -12,36 +12,51 @@
             <!--手机配件-->
             <div class="gray-box">
                 <div class="item-box">
+                    <!-- <shop-item v-for="item,index in goodsData" :item="item" :key="index" @tabschange="tabImg" @checkNum="checkNums" ></shop-item> -->
                     <shop-item v-for="item,index in goodsData" :item="item" :key="index" @tabschange="tabImg"></shop-item>
                 </div>
             </div>
+            <!-- <prompt :hidden="IsMaxNum" @cancel="cancels"></prompt> -->
+            <prompt></prompt>
         </div>
     </div>
 </template>
 
 <script>
-import goodsData from '../lib/newGoodsData.js'
-import shopItem from '../components/shop-item.vue'
-export default {
-  name: 'Shop',
-  data(){
-    return{
-        goodsData,
-        tabsindex:0
+    import goodsData from '../lib/newGoodsData.js'
+    import shopItem from '../components/shop-item'
+    import prompt from '../components/prompt'
+
+    export default {
+        name: 'Shop',
+        data() {
+            return {
+                goodsData,
+                tabsindex: 0,
+                IsMaxNum: true
+            }
+        },
+        methods: {
+            mouseover: function() {
+                return 1
+            },
+            tabImg(tabs) {
+                console.log(tabs)
+            },
+//             checkNums(isNum) {
+//                 if (isNum) {
+//                     this.IsMaxNum = false
+//                 }
+//             },
+//             cancels(cancelP) {
+//                 this.IsMaxNum = cancelP
+//             }
+        },
+        components: {
+            shopItem,
+            prompt
+        }
     }
-  },
-  methods: {
-    mouseover: function () {
-      return 1
-    },
-    tabImg(tabs){
-        console.log(tabs)
-    }
-  },
-  components:{
-    shopItem
-  }
-}
 </script>
 
 <style>

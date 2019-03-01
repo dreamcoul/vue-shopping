@@ -26,56 +26,8 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-cart">
-                        <a href="javascript:;">购物车</a>
-                        <span class="cart-empty-num cart-num">
-                            <i>0</i>
-                        </span>
-                        <div class="nav-cart-wrapper">
-                            <div class="nav-cart-list">
-                                <div class="empty">
-                                    <h3>购物车为空</h3>
-                                    <p>您还没有选购任何商品，现在前往商城选购吧</p>
-                                </div>
-                                <div class="full">
-                                    <div class="nav-cart-items">
-                                        <ul>
-                                            <li class="clear">
-                                                <div class="cart-item ks-cart-item cart-item-shell">
-                                                    <div class="cart-item-inner">
-                                                        <div class="item-thumb">
-                                                            <img src="../assets/img/1.jpg" />
-                                                        </div>
-                                                        <div class="item-desc">
-                                                            <div class="cat-cell">
-                                                                <h4>
-                                                                    <a href="#/item/10027401">坚果Pro</a>
-                                                                </h4>
-                                                                <p class="attrs">
-                                                                    <span>透明</span>
-                                                                </p>
-                                                                <h6>
-                                                                    <span class="price-icon">￥</span>
-                                                                </h6>
-                                                            </div>
-                                                        </div>
-                                                        <div class="del-btn">删除</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="nav-cart-total">
-                                        <p>共<strong class="ng-binding">1</strong>件商品</p>
-                                        <h5>合计：<span>￥</span><span>1000</span></h5>
-                                        <h6>
-                                            <a ng-href="http://smartisan.com/shop/#/cart" class="nav-xx"></a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <!-- 购物车组件 -->
+                    <car-panel></car-panel>
                 </ul>
                 <ul class="nav-list">
                     <li><a href="javascript:;" title="在线商城">在线商城</a></li>
@@ -103,11 +55,11 @@
                     </ul>
                     <div class="nav-search">
                         <font-awesome-icon icon="search" />
-                        <input  type="search" />
+                        <input type="search" />
                     </div>
                 </div>
             </div>
-<!--            <div class="nav-goods-panel ">
+            <!--            <div class="nav-goods-panel ">
                 <ul class="nav-goods-list">
                     <li class="jianguopro2">
                         <a href="//www.smartisan.com/item/1000351">
@@ -134,8 +86,13 @@
 </template>
 
 <script>
+import carPanel from './cart-panel'
+
 export default {
-  name: 'headerNav'
+    name: 'headerNav',
+    components:{
+       carPanel 
+    }
 }
 </script>
 

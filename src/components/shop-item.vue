@@ -17,7 +17,7 @@
                     </ul>
                 </div>
                 <div class="item-btns clearfix">
-                    <span class="item-gray-btn"><a href="javascript:;" target="_blank">查看详情</a> </span><span class="item-blue-btn">加入购物车
+                    <span class="item-gray-btn"><a href="javascript:;" target="_blank">查看详情</a> </span><span class="item-blue-btn" @click="addCarPanelData(item.sku_info[itemIndex])">加入购物车
                     </span>
                 </div>
                 <div class="item-price clearfix">
@@ -37,7 +37,7 @@ export default {
   name: 'shopItem',
   data(){
       return{
-          itemIndex:0
+          itemIndex: 0
       }
   },
   props: {
@@ -47,6 +47,21 @@ export default {
       tab(index){
           this.itemIndex = index
           this.$emit('tabschange',this.itemIndex)
+      },
+      addCarPanelData(data){
+//           let ism = false
+//           this.$store.state.carPanelData.forEach(goods => {
+//                 if (goods.sku_id === data.sku_id) {
+//                     if (goods.count > data.limit_num || goods.count === data.limit_num) {
+//                         ism = true
+//                     }
+//                 }
+//             })
+//           if(ism){
+//               this.$emit('checkNum',ism)
+//           }else{
+              this.$store.commit('addCarPanelData',data)
+          // }
       }
   }
 }

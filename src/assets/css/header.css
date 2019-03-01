@@ -237,7 +237,6 @@
 
 
 /*购物车*/
-
 .nav-cart {
   margin-left: 21px;
   width: 61px;
@@ -300,15 +299,16 @@
 }
 
 .nav-cart-wrapper {
-  display: none;
-  position: absolute;
-  right: 0;
-  padding-top: 18px;
-  opacity: 0;
   visibility: hidden;
-  top: -3000px;
+  position: absolute;
+  padding-top: 18px;
+  right: 0;
   z-index: 30;
   width: 360px;
+}
+
+.nav-cart:hover .nav-cart-wrapper{
+  visibility: visible;
 }
 
 .nav-cart-wrapper:before {
