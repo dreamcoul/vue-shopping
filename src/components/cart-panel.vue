@@ -34,7 +34,7 @@
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <div class="del-btn">删除</div>
+                                            <div class="del-btn" @click="clear(item)">删除</div>
                                         </div>
                                     </div>
                                 </li>
@@ -65,6 +65,11 @@ export default{
         },
         PriceData(){
             return this.$store.getters.totalPriceData
+        }
+    },
+    methods:{
+        clear(data){
+            this.$store.commit('clearCarData',data)
         }
     }
 }

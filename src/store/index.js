@@ -50,6 +50,13 @@ let store = new Vuex.Store({
         },
         cancelPrompt(state){
             state.isMaxNum = false
+        },
+        clearCarData(state,data){
+            state.carPanelData.forEach((goods,index) => {
+              if (goods.sku_id === data.sku_id) {
+                     state.carPanelData.splice(index, 1)
+              }
+          })  
         }
     }
 })
