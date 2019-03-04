@@ -44,14 +44,14 @@
             <div class="nav-sub-wrapper">
                 <div class="container">
                     <ul class="nav-list">
-                        <li><a href="javascript:;">首页</a></li>
-                        <li><a href="javascript:;">手机</a></li>
-                        <li><a href="javascript:;">手感膜</a></li>
-                        <li><a href="javascript:;">官方配件</a></li>
-                        <li><a href="javascript:;">周边产品</a></li>
-                        <li><a href="javascript:;">第三方配件</a></li>
-                        <li><a href="javascript:;">全部商品</a></li>
-                        <li><a href="javascript:;">服务</a></li>
+                        <li><router-link to="/Home">首页</router-link></li>
+                        <li><router-link to="/mPhone">手机</router-link></li>
+                        <li><router-link to="/one">手感膜</router-link></li>
+                        <li><router-link to="/shop">官方配件</router-link></li>
+                        <li><router-link to="/two">周边产品</router-link></li>
+                        <li><router-link to="/three">第三方配件</router-link></li>
+                        <li><router-link to="/four">全部商品</router-link></li>
+                        <li><router-link to="/five">服务</router-link></li>
                     </ul>
                     <div class="nav-search">
                         <font-awesome-icon icon="search" />

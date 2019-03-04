@@ -7,7 +7,12 @@ let store = new Vuex.Store({
     state: {
         carPanelData: [],
         isMaxNum:false,
-        carShow:false
+        carShow:false,
+        ball:{
+            show:false,
+            el:null,
+            img:''
+        }
     },
     getters: {
         //计算
@@ -37,8 +42,15 @@ let store = new Vuex.Store({
                     if(goods.count>data.limit_num){
                         goods.count--
                         state.isMaxNum = true
+                        boff = false
+                        return
                     }
                     boff = false
+                    state.carShow = true
+                    state.ball.show=true
+                    state.ball.img=data.ali_image
+                    state.ball.el = event.path[0]
+                    // console.log(state.ball)
                 }
             })
             if (boff) {
@@ -46,9 +58,12 @@ let store = new Vuex.Store({
                 let goodsData = data
                 Vue.set(goodsData, 'count', 1)
                 state.carPanelData.push(goodsData)
+                state.ball.show=true
+                state.ball.img=data.ali_image
+                state.ball.el = event.path[0]
             }
             // console.log(state.carPanelData)
-
+                 // console.log(state.ball)
         },
         cancelPrompt(state){
             state.isMaxNum = false

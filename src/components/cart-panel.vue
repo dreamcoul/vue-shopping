@@ -1,6 +1,6 @@
 <template>
-        <li class="nav-cart" id="cartPanel" >
-            <a href="javascript:;" @mouseenter="EnterCartPanel" @mouseleave="LeaveCartPanel">购物车</a>
+        <li class="nav-cart" id="cartPanel" @mouseenter="EnterCartPanel" @mouseleave="LeaveCartPanel">
+            <a href="javascript:;"  class="ball-rect">购物车</a>
             <!--根据class改变颜色-->
             <span class="cart-empty-num" :class="{'cart-num':CountData>0}">
                 <i>{{CountData}}</i>
@@ -14,7 +14,7 @@
                     <div class="full">
                         <div class="nav-cart-items">
                             <ul>
-                                <li class="clear" v-for="(item,index) in CarPanelData">
+                                <li class="clear" v-for="(item,index) in CarPanelData" :key="index">
                                     <div class="cart-item js-cart-item cart-item-sell">
                                         <div class="cart-item-inner">
                                             <div class="item-thumb">
@@ -50,6 +50,15 @@
                     </div>
                 </div>
             </div>
+            <transition name="ball"  
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:after-enter="afterEnter"
+            v-bind:css="true">
+                <div class="addcart-mask" v-show='ball.show'>
+                    <img src="" class="mask-item"/>
+                </div>
+            </transition>
         </li>
 </template>
 
@@ -68,6 +77,9 @@ export default{
         },
         PanelShow(){
             return this.$store.state.carShow
+        },
+        ball(){
+            return this.$store.state.ball
         }
     },
     methods:{
@@ -79,10 +91,44 @@ export default{
         },
         LeaveCartPanel(){
            this.$store.commit('LeaveCartPanel')
+        },
+        beforeEnter(el){
+            console.log(el)
+            let rect = this.ball.el.getBoundingClientRect()
+            let rectE = document.getElementsByClassName('ball-rect')[0].getBoundingClientRect()
+            let ball = document.getElementsByClassName('mask-item')[0]
+            let x = rectE.left+15 -(rect.left+rect.width/2)
+            let y = rect.top + rect.height/2 - (rectE.top +10)
+            
+            el.style.transform = 'translate3d(0,'+y+'px,0)'
+            ball.style.transform = 'translate3d(-'+x+'px,0,0)'
+            ball.src = this.ball.img
+            console.log(y)
+        },
+        enter(el){
+            let a = el.offsetHeight
+            let ball = document.getElementsByClassName('mask-item')[0]
+            el.style.transform = 'translate3d(0,0,0)'
+            ball.style.transform = 'translate3d(0,0,0)'
+        },
+        afterEnter(){
+            this.ball.show = false
         }
     }
 }
 </script>
 
 <style>
+.ball-enter-active{
+    transition: 1s cubic-bezier(.17,.67,.56,1.53);
+}
+
+.ball-enter-active .mask-item{
+    transition: 1s;
+}
+
+ .mask-item{
+    height: 20px;
+    widows: 16px;
+} 
 </style>
